@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B27458C22848690C00BF782A /* physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27458C12848690C00BF782A /* physics.cpp */; };
 		B27458C42848691B00BF782A /* velocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27458C32848691B00BF782A /* velocity.cpp */; };
+		B27458C72849BB0800BF782A /* gps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B27458C62849BB0800BF782A /* gps.cpp */; };
 		C11C7EA425780B2100EA4B2E /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11C7EA225780B2100EA4B2E /* GLUT.framework */; };
 		C11C7EA525780B2100EA4B2E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11C7EA325780B2100EA4B2E /* OpenGL.framework */; };
 		C11C7EB125780B6500EA4B2E /* Lab07.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C11C7EA625780B5C00EA4B2E /* Lab07.cpp */; };
@@ -35,6 +36,8 @@
 		B27458C0284868FA00BF782A /* physics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = physics.h; sourceTree = "<group>"; };
 		B27458C12848690C00BF782A /* physics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = physics.cpp; sourceTree = "<group>"; };
 		B27458C32848691B00BF782A /* velocity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = velocity.cpp; sourceTree = "<group>"; };
+		B27458C52849BAF600BF782A /* gps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gps.h; sourceTree = "<group>"; };
+		B27458C62849BB0800BF782A /* gps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gps.cpp; sourceTree = "<group>"; };
 		C11C7E962578098A00EA4B2E /* Lab07 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab07; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11C7EA225780B2100EA4B2E /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		C11C7EA325780B2100EA4B2E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -47,7 +50,7 @@
 		C11C7EAF25780B6500EA4B2E /* testPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testPosition.h; sourceTree = "<group>"; };
 		C11C7EB025780B6500EA4B2E /* uiDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiDraw.h; sourceTree = "<group>"; };
 		C179C6C027E375AF00E3E514 /* position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = position.cpp; sourceTree = "<group>"; };
-		C179C6C227E375D600E3E514 /* position.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
+		C179C6C227E375D600E3E514 /* position.h */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 		C11C7E8D2578098A00EA4B2E = {
 			isa = PBXGroup;
 			children = (
+				B27458C52849BAF600BF782A /* gps.h */,
+				B27458C62849BB0800BF782A /* gps.cpp */,
 				B27458C32848691B00BF782A /* velocity.cpp */,
 				B27458C12848690C00BF782A /* physics.cpp */,
 				B27458C0284868FA00BF782A /* physics.h */,
@@ -160,6 +165,7 @@
 			files = (
 				C11C7EB525780B6500EA4B2E /* uiDraw.cpp in Sources */,
 				B27458C42848691B00BF782A /* velocity.cpp in Sources */,
+				B27458C72849BB0800BF782A /* gps.cpp in Sources */,
 				B27458C22848690C00BF782A /* physics.cpp in Sources */,
 				C11C7EB125780B6500EA4B2E /* Lab07.cpp in Sources */,
 				C11C7EB225780B6500EA4B2E /* test.cpp in Sources */,

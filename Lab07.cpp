@@ -16,6 +16,7 @@
 #include "uiDraw.h"     // for RANDOM and DRAW*
 #include "position.h"      // for POINT
 #include "velocity.h"
+#include "gps.h"
 using namespace std;
 
 /*************************************************************************
@@ -63,7 +64,8 @@ public:
    Position ptStar;
    Position ptUpperRight;
    
-   Velocity v;
+   Gps gps;
+   
 
    unsigned char phaseStar;
 
@@ -105,24 +107,27 @@ void callBack(const Interface* pUI, void* p)
 
    // rotate the earth
    pDemo->angleEarth += 0.01;
-   pDemo->angleShip += 0.02;
+//   pDemo->angleShip += 0.02;
+   pDemo->gps.angleGps += 0.02;
    pDemo->phaseStar++;
    
    //
-
+   pDemo->gps.initializeGps();
    //
    // draw everything
    //
 
-   drawCrewDragon(pDemo->ptCrewDragon, pDemo->angleShip);
-   drawHubble(pDemo->ptHubble, pDemo->angleShip);
-   drawSputnik(pDemo->ptSputnik, pDemo->angleShip);
-   drawStarlink(pDemo->ptStarlink, pDemo->angleShip);
-   drawShip(pDemo->ptShip, pDemo->angleShip, pUI->isSpace());
-   drawGPS(pDemo->ptGPS, pDemo->angleShip);
+//   drawCrewDragon(pDemo->ptCrewDragon, pDemo->angleShip);
+//   drawHubble(pDemo->ptHubble, pDemo->angleShip);
+//   drawSputnik(pDemo->ptSputnik, pDemo->angleShip);
+//   drawStarlink(pDemo->ptStarlink, pDemo->angleShip);
+//   drawShip(pDemo->ptShip, pDemo->angleShip, pUI->isSpace());
+//   drawGPS(pDemo->ptGPS, pDemo->angleShip);
    drawStar(pDemo->ptStar, pDemo->phaseStar);
+   drawGPS(pDemo->gps.getPosition(), pDemo->gps.angleGps);
    Position pt;
    drawEarth(pt, pDemo->angleEarth);
+   
 }
 
 double Position::metersFromPixels = 40.0;

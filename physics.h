@@ -6,88 +6,116 @@
 //
 
 #pragma once
-#include <cmath>
-#include "velocity.h"
-#include "position.h"
 
 #define PI 3.14159265
+#include <stdio.h>
+#include <cmath>
 
-inline double accGravityAtAltitude(double h)
-{
-    double acc = g* pow((r/(r+h)),2);
-    return acc;
-}
 
-inline double heightAboveEarth(double x, double y)
+class Physics
 {
-    double h = sqrt(x*x + y*y) - rEarth;
-    return h;
-}
-
-inline double directionOfGravityPull(double x, double y)
-{
-    // Returns angle in Radians
-    double angle = atan2(x,y)/ 180 * PI;
-    return angle;
-}
-
-// Sin
-inline double horizontalAcceleration(Position &p)
-{
-    double angle = directionOfGravityPull(p.getMetersX(),p.getMetersY());
+private:
+    const double g = 9.8; // m/s^2
+    const double rEarth = 637800; // m
+    const double t = 48; // f/s
     
-    double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
+public:
+    void horizontalPosition(Velocity &v, Position &p)
+    {
+        p.addMetersX(v.getDx() * t);
+    };
     
-    double acc = accGravityAtAltitude(h);
+    void verticalPosition(Velocity &v, Position &p)
+    {
+        p.addMetersY(v.getDy() *t); 
+    }
     
-    double ddx = acc*sin(angle);
-    return ddx;
-}
+    
+    double accGravityAtAltitude(double h)
+    {
+        double acc = g* pow((rEarth/(rEarth+h)),2);
+        return acc;
+    }
+
+    double heightAboveEarth(double x, double y)
+    {
+        double h = sqrt(x*x + y*y) - rEarth;
+        return h;
+    }
+
+    void  directionOfGravityPull(double x, double y, double &angle)
+    {
+        // Returns angle in degree
+        angle = atan2(x,y) *180 / PI ;
+        std:: cout << angle << "My Angle" << std:: endl;
+    }
+
+     // Sin
+    double horizontalAcceleration(Position &p, double &angle)
+    {
+//        double rc = cos(angle*PI/180);
+//        double rs = sin(angle*PI/180);
+        
+        directionOfGravityPull(p.getMetersX(),p.getMetersY(), angle);
+        double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
+
+        double acc = accGravityAtAltitude(h);
+
+        double ddx = acc*sin(angle*PI/180);
+        return ddx;
+    }
 
 
-// Cos
-inline double verticalAcceleration(Position &p)
-{
-    double angle = directionOfGravityPull(p.getMetersX(),p.getMetersY());
-    double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
-    double acc = accGravityAtAltitude(h);
-    double ddy = acc * cos(angle);
-    return ddy;
-}
-
- // x = x0 + dxt
-inline double horizontalPosition(Velocity &v, Position &p)
-{
-
-    p.x = p.getMetersX() + v.getDx() * t;
-}
-
-inline double verticalPosition(Velocity &v, Position &p)
-{
-    p.y = p.getMetersY() + v.getDy() *t;
-}
-
-// x = x0 + dxt +1/2 ddx t^2
-inline double horizontalDistance(Velocity &v , Position &p)
-{
-
-    double acc = horizontalAcceleration(p);
-    p.x =  horizontalPosition(v,p) + 0.5* acc*(t*t);
-}
-
-inline double verticalDistance(Velocity &v, Position &p)
-{
-    double acc = verticalAcceleration(v);
-    p.y =  verticalPosition(v,p) + 0.5* acc*(t*t);
-}
-
-const double g = 9.8; // m/s^2
-const double rEarth = 637800; // m
-const double t = 48; // f/s
+    // Cos
+    double verticalAcceleration(Position &p, double &angle)
+    {
+//        double rc = cos(angle*PI/180);
+//        double rs = sin(angle*PI/180);
+//        directionOfGravityPull(rs*p.getMetersY(), rc*p.getMetersY(), angle);
+        double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
+        double acc = accGravityAtAltitude(h);
+        double ddy = acc * cos(angle*PI/180);
+        return ddy;
+    }
+    
 
 
-// Find Horizontal and Vertical Position 
-// Find Horizontal and Vertical Velocity
-// Find Acceleration due to gravity at height
-// Apply accelration and find New Position
+//     // x = x0 + dxt
+//    double horizontalPosition(Velocity &v, Position &p)
+//    {
+//
+//        p.x = p.getMetersX() + v.getDx() * t;
+//    }
+//
+//    double verticalPosition(Velocity &v, Position &p)
+//    {
+//        p.y = p.getMetersY() + v.getDy() *t;
+//    }
+//
+//    // x = x0 + dxt +1/2 ddx t^2
+    void horizontalDistance(Position &p, Velocity &v, double ddx)
+    {
+        
+        p.addMetersX(v.getDx() *t + 0.5* ddx*(t*t));
+    }
+
+    void verticalDistance(Position &p, Velocity &v, double ddy )
+    {
+        double m = v.getDy() *t;
+        p.addMetersY(m + 0.5* ddy*(t*t));
+    }
+    
+    void verticalVelocity(Velocity &v, double ddy)
+    {
+        v.addDy(ddy*t);
+    }
+    
+    void horizontalVelocity(Velocity &v, double ddx)
+    {
+        v.addDx(ddx*t);
+    }
+
+};
+
+
 
