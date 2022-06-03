@@ -11,9 +11,9 @@ private:
     double dx;
     double dy;
 public:
-    Velocity(){};
+    Velocity():dx(-3100),dy(0){};
     Velocity(double dx, double dy):dx(dx), dy(dy){};
-    Velocity(double dx, double dy): dx(rhs.dx), dy(rhs.dy){};
+//    Velocity(double dx, double dy): dx(rhs.dx), dy(rhs.dy){};
     Velocity & operator = (const Velocity & rhs)
     {
         dx = rhs.dx;
@@ -23,7 +23,7 @@ public:
     
     double getDx() {return dx;}
     double getDy() {return dy;}
-    double getSpeed() {return sqrt(x*x + y*y);}
+//    double getSpeed() {return sqrt(x*x + y*y);}
     
     void setDx(double dx){this->dx = dx;}
     void setDy(double dy){this->dy = dy;}
@@ -41,9 +41,9 @@ public:
     
     Velocity &operator += (const Velocity &rhs)
     {
-        addV(rhs);
+        addVelocity(rhs);
         return *this;
     }
     
     
-}
+};

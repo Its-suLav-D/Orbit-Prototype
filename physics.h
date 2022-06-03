@@ -7,6 +7,8 @@
 
 #pragma once
 #include <cmath>
+#include "velocity.h"
+#include "position.h"
 
 #define PI 3.14159265
 
@@ -30,50 +32,58 @@ inline double directionOfGravityPull(double x, double y)
 }
 
 // Sin
-inline double horizontalAcceleration(double x, double y)
+inline double horizontalAcceleration(Position &p)
 {
-    double angle = directionOfGravityPull(x,y);
-    double h = heightAboveEarth(x,y);
+    double angle = directionOfGravityPull(p.getMetersX(),p.getMetersY());
+    
+    double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
+    
     double acc = accGravityAtAltitude(h);
+    
     double ddx = acc*sin(angle);
     return ddx;
 }
 
 
 // Cos
-inline double verticalAcceleration(double x, double y)
+inline double verticalAcceleration(Position &p)
 {
-    double angle = directionOfGravityPull(x,y);
-    double h = heightAboveEarth(x,y);
+    double angle = directionOfGravityPull(p.getMetersX(),p.getMetersY());
+    double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
     double acc = accGravityAtAltitude(h);
-    double ddy = acc*cos(angle);
+    double ddy = acc * cos(angle);
     return ddy;
 }
 
-
-inline double horizontalPosition(double x, double dx )
+ // x = x0 + dxt
+inline double horizontalPosition(Velocity &v, Position &p)
 {
-    return 0.0;
+
+    p.x = p.getMetersX() + v.getDx() * t;
 }
 
-inline double verticalPosition(double y, double dy)
+inline double verticalPosition(Velocity &v, Position &p)
 {
-    return 0.0;
+    p.y = p.getMetersY() + v.getDy() *t;
 }
 
-inline double horizontalDistance()
+// x = x0 + dxt +1/2 ddx t^2
+inline double horizontalDistance(Velocity &v , Position &p)
 {
-    return 0.0;
+
+    double acc = horizontalAcceleration(p);
+    p.x =  horizontalPosition(v,p) + 0.5* acc*(t*t);
 }
 
-inline double verticalDistance()
+inline double verticalDistance(Velocity &v, Position &p)
 {
-    return 0.0;
+    double acc = verticalAcceleration(v);
+    p.y =  verticalPosition(v,p) + 0.5* acc*(t*t);
 }
 
-double g = 9.8; // m/s^2
-double rEarth = 637800; // m
-double t = 48; // f/s
+const double g = 9.8; // m/s^2
+const double rEarth = 637800; // m
+const double t = 48; // f/s
 
 
 // Find Horizontal and Vertical Position 

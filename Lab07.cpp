@@ -15,6 +15,7 @@
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
 #include "position.h"      // for POINT
+#include "velocity.h"
 using namespace std;
 
 /*************************************************************************
@@ -42,8 +43,8 @@ public:
 //      ptShip.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
 //      ptShip.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      ptGPS.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptGPS.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      ptGPS.setMetersX(0);
+      ptGPS.setMetersY(42164000);
 
       ptStar.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
       ptStar.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
@@ -61,6 +62,8 @@ public:
    Position ptGPS;
    Position ptStar;
    Position ptUpperRight;
+   
+   Velocity v;
 
    unsigned char phaseStar;
 
@@ -104,6 +107,8 @@ void callBack(const Interface* pUI, void* p)
    pDemo->angleEarth += 0.01;
    pDemo->angleShip += 0.02;
    pDemo->phaseStar++;
+   
+   //
 
    //
    // draw everything
