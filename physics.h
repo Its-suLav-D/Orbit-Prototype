@@ -15,21 +15,21 @@
 class Physics
 {
 private:
-    const double g = 9.8; // m/s^2
-    const double rEarth = 637800; // m
+    const double g = -9.8067; // m/s^2
+    const double rEarth = 6378000; // m
     const double t = 48; // f/s
     
 public:
-    void horizontalPosition(Velocity &v, Position &p)
-    {
-        p.addMetersX(v.getDx() * t);
-    };
-    
-    void verticalPosition(Velocity &v, Position &p)
-    {
-        p.addMetersY(v.getDy() *t); 
-    }
-    
+//    void horizontalPosition(Velocity &v, Position &p)
+//    {
+//        p.addMetersX(v.getDx() * t);
+//    };
+//
+//    void verticalPosition(Velocity &v, Position &p)
+//    {
+//        p.addMetersY(v.getDy() *t);
+//    }
+//
     
     double accGravityAtAltitude(double h)
     {
@@ -45,8 +45,8 @@ public:
 
     void  directionOfGravityPull(double x, double y, double &angle)
     {
-        // Returns angle in degree
-        angle = atan2(x,y) *180 / PI ;
+        // Returns angle in radians
+        angle = atan2(x,y);
         std:: cout << angle << "My Angle" << std:: endl;
     }
 
@@ -61,7 +61,7 @@ public:
 
         double acc = accGravityAtAltitude(h);
 
-        double ddx = acc*sin(angle*PI/180);
+        double ddx = acc*sin(angle);
         return ddx;
     }
 
@@ -74,7 +74,7 @@ public:
 //        directionOfGravityPull(rs*p.getMetersY(), rc*p.getMetersY(), angle);
         double h = heightAboveEarth(p.getMetersX(),p.getMetersY());
         double acc = accGravityAtAltitude(h);
-        double ddy = acc * cos(angle*PI/180);
+        double ddy = acc * cos(angle);
         return ddy;
     }
     

@@ -12,7 +12,7 @@ private:
     double dx;
     double dy;
 public:
-    Velocity():dx(-2192),dy(2192){};
+    Velocity():dx(-2685),dy(1550){};
     Velocity(double dx, double dy):dx(dx), dy(dy){};
 //    Velocity(double dx, double dy): dx(rhs.dx), dy(rhs.dy){};
     Velocity & operator = (const Velocity & rhs)

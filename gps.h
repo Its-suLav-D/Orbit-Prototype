@@ -19,10 +19,13 @@ private:
     Physics physics;
 //    double initialY = 29814450;
 //    double initialX = 29814450;
-    double angle=45;
+    double angle=30 *PI/180;
 
 public:
-    Gps():position(29819250,29819250){}
+    Gps(){
+        position.setMetersX(sin(angle)* 42164000);
+        position.setMetersY(cos(angle)* 42164000);
+    }
     
     void applyPhysics();
     void initializeGps();
