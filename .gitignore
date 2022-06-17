@@ -4,3 +4,6 @@ packages/nupengl.core.0.1.0.1/build/native/lib/Win32/freeglut.lib
 *.dll
 *.db
 .vs/Lab07/v16/.suo
+*.opendb
+*.db-shm
+*.db-wal
