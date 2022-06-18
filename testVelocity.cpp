@@ -34,13 +34,13 @@ private:
 		vel.setDy(0.0);
 		Acceleration acc;
 		Physics phy;
-		acc.setDdx(1.0);
+		acc.ddx = 1.0;
 
 		//exercise
-		phy.HorizontalVelocity(vel, acc.getDdx());
+		phy.horizontalVelocity(vel, acc.ddx);
 		//verify
-		assert(vel.Dx == 1.0);
-		assert(vel.Dy == 0.0);
+		assert(vel.dx == 1.0);
+		assert(vel.dy == 0.0);
 	} //teardown
 
 	void startAtTenTenAccelerateX()
@@ -49,12 +49,15 @@ private:
 		Velocity vel;
 		vel.setDx(10.0);
 		vel.setDy(10.0);
+		Acceleration acc;
+		Physics phy;
+		acc.ddx = 10.0;
 
 		//exercise
-		// ?
+		phy.horizontalVelocity(vel, acc.ddx);
 		//verify
-		assert(vel.getDx() == 20.0);
-		assert(vel.getDy() == 10.0);
+		assert(vel.dx == 20.0);
+		assert(vel.dy == 10.0);
 	} //teardown
 
 	void startAtZeroAccelerateXAndY()
@@ -63,9 +66,14 @@ private:
 		Velocity vel;
 		vel.setDx(0.0);
 		vel.setDy(0.0);
+		Acceleration acc;
+		Physics phy;
+		acc.ddx = 10.0;
+		acc.ddy = 10.0;
 
 		//exercise
-		// ?
+		phy.horizontalVelocity(vel, acc.ddx);
+		phy.verticalVelocity(vel, acc.ddy);
 		//verify
 		assert(vel.getDx() == 10.0);
 		assert(vel.getDy() == 10.0);
@@ -77,9 +85,12 @@ private:
 		Velocity vel;
 		vel.setDx(0.0);
 		vel.setDy(0.0);
+		Acceleration acc;
+		Physics phy;
+		acc.ddx = -1.0;
 
 		//exercise
-		// ?
+		phy.horizontalVelocity(vel, acc.ddx);
 		//verify
 		assert(vel.getDx() == -1.0);
 		assert(vel.getDy() == 0.0);
@@ -91,9 +102,12 @@ private:
 		Velocity vel;
 		vel.setDx(10.0);
 		vel.setDy(10.0);
+		Acceleration acc;
+		Physics phy;
+		acc.ddx = -10.0;
 
 		//exercise
-		// ?
+		phy.horizontalVelocity(vel, acc.ddx);
 		//verify
 		assert(vel.getDx() == 0.0);
 		assert(vel.getDy() == 10.0);
@@ -105,9 +119,14 @@ private:
 		Velocity vel;
 		vel.setDx(0.0);
 		vel.setDy(0.0);
+		Acceleration acc;
+		Physics phy;
+		acc.ddx = -10.0;
+		acc.ddy = -10.0;
 
 		//exercise
-		// ?
+		phy.horizontalVelocity(vel, acc.ddx);
+		phy.verticalVelocity(vel, acc.ddy);
 		//verify
 		assert(vel.getDx() == -10.0);
 		assert(vel.getDy() == -10.0);
