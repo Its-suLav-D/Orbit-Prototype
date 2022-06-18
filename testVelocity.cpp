@@ -1,4 +1,6 @@
 #include "velocity.h"
+#include "physics.h"
+#include "acceleration.h"
 #include <cassert>
 #include <iostream>
 
@@ -30,12 +32,15 @@ private:
 		Velocity vel;
 		vel.setDx(0.0);
 		vel.setDy(0.0);
+		Acceleration acc;
+		Physics phy;
+		acc.setDdx(1.0);
 
 		//exercise
-		// ?
+		phy.HorizontalVelocity(vel, acc.getDdx());
 		//verify
-		assert(vel.getDx() == 1.0);
-		assert(vel.getDy() == 0.0);
+		assert(vel.Dx == 1.0);
+		assert(vel.Dy == 0.0);
 	} //teardown
 
 	void startAtTenTenAccelerateX()

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="test files">
+      <UniqueIdentifier>{bc4b1676-a134-49a8-8919-776f728ab44e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Lab07.cpp">
@@ -39,12 +42,12 @@
     <ClCompile Include="velocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="testVelocity.cpp">
+      <Filter>test files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testPosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="uiDraw.h">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="velocity.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testPosition.h">
+      <Filter>test files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
